@@ -1,20 +1,24 @@
-<!-- patient_mohammed.html -->
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Patient QR</title>
+<title>Patient Page</title>
+<style>
+body { font-family: Arial; text-align:center; padding:20px; }
+#result { margin-top:20px; font-weight:bold; color:green; }
+</style>
 </head>
 <body>
-<h1>Patient QR Code</h1>
+<h1>Patient Information</h1>
 <p>Name: Mohammed Khalid Abdulrahman</p>
 <p>Age: 44</p>
 <p>Diagnosis: Hypertension</p>
 
 <script>
-// عند فتح صفحة المريض نخزن معرفه
+// تخزين معرف المريض عند فتح الصفحة
 localStorage.setItem("scannedPatientId", "P504321");
+document.getElementById("result").innerText = "✅ Patient page opened successfully!";
 </script>
+<div id="result"></div>
 </body>
-</html>
-
+</html>!-- patient_mohammed.html -->
