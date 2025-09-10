@@ -1,51 +1,31 @@
+<!-- medicine_amlodipine.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Medicine QR</title>
-<style>
-body { font-family: Arial; text-align:center; padding:20px; }
-#result { margin-top:20px; font-weight:bold; }
-.success { color: green; }
-.error { color: red; }
-.waiting { color: orange; }
-</style>
 </head>
 <body>
 <h1>Medicine Information</h1>
-
-<!-- هنا ممكن تضعي باركود الدواء بنفسك -->
-<img src="path_to_your_medicine_barcode.png" alt="Medicine Barcode" width="250">
-
 <div id="result"></div>
 
 <script>
-// Medicine information
 const patientId = "P504321"; // معرف المريض الصحيح
 const drug = "Amlodipine";
 const dose = "5 mg Tablet";
 
-// قراءة بيانات المريض من localStorage
-const scannedData = JSON.parse(localStorage.getItem("scannedPatientData") || "{}");
-const now = new Date().getTime();
-const ACCESS_DURATION = 60 * 1000; // دقيقة واحدة
-
 const resultDiv = document.getElementById("result");
 
-if (!scannedData.id) {
-    // لم يتم مسح المريض
-    resultDiv.innerHTML = "⚠️ Please scan the patient QR code first!";
-    resultDiv.className = "waiting";
-} else if (scannedData.id === patientId && (now - scannedData.time <= ACCESS_DURATION)) {
-    // مطابقة صحيحة والوقت ضمن الدقيقة
-    resultDiv.innerHTML = ✅ Medicine Info:<br>${drug} - ${dose};
-    resultDiv.className = "success";
+// نقرأ معرف المريض من localStorage
+const scannedId = localStorage.getItem("scannedPatientId");
+
+if (scannedId === patientId) {
+    // إذا تم مسح المريض، نعرض الدواء
+    resultDiv.innerHTML = ✅ Medicine Info: ${drug} - ${dose};
 } else {
-    // الوقت انتهى أو معرف المريض غير مطابق
-    resultDiv.innerHTML = "❌ You must scan the patient QR code again!";
-    resultDiv.className = "error";
+    // إذا لم يتم مسح المريض أولاً
+    resultDiv.innerHTML = "❌ Please scan the patient QR code first!";
 }
 </script>
-
 </body>
 </html>
