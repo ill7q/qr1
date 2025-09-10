@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Patient QR</title>
+<style>
+body { font-family: Arial; text-align:center; padding:20px; }
+#result { margin-top:20px; font-weight:bold; }
+</style>
+</head>
+<body>
+<h1>Patient Information</h1>
+
+<!-- هنا ممكن تضعي الباركود بنفسك -->
+<img src="path_to_your_barcode.png" alt="Patient Barcode" width="250">
+
+<div id="result"></div>
+
+<script>
+// Patient information
+const patientId = "P504321";
+const name = "Mohammed Khalid Abdulrahman";
+const age = "44";
+const diagnosis = "Hypertension";
+
+// Display patient info
+document.getElementById("result").innerHTML = `
+✅ Patient Info:<br>
+Name: ${name}<br>
+Age: ${age}<br>
+Diagnosis: ${diagnosis}
+`;
+
+// Store patient ID and timestamp in localStorage for later matching
+const patientData = {
+    id: patientId,
+    time: new Date().getTime() // current timestamp
+};
+localStorage.setItem("scannedPatientData", JSON.stringify(patientData));
+</script>
+
+</body>
+</html>
