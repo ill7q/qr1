@@ -1,30 +1,33 @@
-<!-- medicine_amlodipine.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Medicine QR</title>
+<title>Medicine Page</title>
+<style>
+body { font-family: Arial; text-align:center; padding:20px; }
+#result { margin-top:20px; font-weight:bold; }
+.success { color: green; }
+.error { color: red; }
+</style>
 </head>
 <body>
 <h1>Medicine Information</h1>
+<p>Medicine: Amlodipine 5 mg Tablet</p>
 <div id="result"></div>
 
 <script>
 const patientId = "P504321"; // معرف المريض الصحيح
-const drug = "Amlodipine";
-const dose = "5 mg Tablet";
-
 const resultDiv = document.getElementById("result");
 
-// نقرأ معرف المريض من localStorage
+// التحقق من فتح صفحة المريض أولاً
 const scannedId = localStorage.getItem("scannedPatientId");
 
 if (scannedId === patientId) {
-    // إذا تم مسح المريض، نعرض الدواء
-    resultDiv.innerHTML = ✅ Medicine Info: ${drug} - ${dose};
+    resultDiv.innerHTML = "✅ This medicine belongs to the patient!";
+    resultDiv.className = "success";
 } else {
-    // إذا لم يتم مسح المريض أولاً
-    resultDiv.innerHTML = "❌ Please scan the patient QR code first!";
+    resultDiv.innerHTML = "❌ Please open the patient page first!";
+    resultDiv.className = "error";
 }
 </script>
 </body>
